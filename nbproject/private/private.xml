@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/Users/Sergio/NetBeansProjects/web/css/registro.css</file>
+            <file>file:/Users/Sergio/NetBeansProjects/web/indexUser.jsp</file>
+            <file>file:/Users/Sergio/NetBeansProjects/src/java/modelo/Auxiliares.java</file>
+            <file>file:/Users/Sergio/NetBeansProjects/src/java/modelo/DAOjdbc.java</file>
+            <file>file:/Users/Sergio/NetBeansProjects/src/java/controlador/ServletCerrar.java</file>
+            <file>file:/Users/Sergio/NetBeansProjects/web/index.jsp</file>
+            <file>file:/Users/Sergio/NetBeansProjects/src/java/controlador/ServletLoginUser.java</file>
+            <file>file:/Users/Sergio/NetBeansProjects/src/java/modelo/ManejadorUsuariosBD.java</file>
+            <file>file:/Users/Sergio/NetBeansProjects/web/registro.jsp</file>
+            <file>file:/Users/Sergio/NetBeansProjects/src/java/controlador/ServletRegistroUsuario.java</file>
+        </group>
+    </open-files>
+</project-private>
