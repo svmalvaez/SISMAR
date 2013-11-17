@@ -27,13 +27,14 @@ private ManejadorUsuariosBD manejador;
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
+  /*try {
         List<Producto> productos = manejador.menu();
-        request.setAttribute("productos", productos); // Will be available as ${products} in JSP
-        request.getRequestDispatcher("/index.jsp").forward(request, response);
+        request.setAttribute("productos", productos); //  ${productos} en JSP
+        request.getRequestDispatcher("/Modal.jsp").forward(request, response);
     } catch (SQLException e) {
         throw new ServletException("No se pueden obtener datos de la BD", e);
-    }
+    }*/
+        request.getRequestDispatcher("/Modal.jsp").forward(request, response);
     }
 
     /**

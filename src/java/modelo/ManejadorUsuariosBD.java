@@ -97,7 +97,10 @@ public class ManejadorUsuariosBD {
                 stm= this.bd.conexion().prepareStatement("select nombre, paterno from cliente");
                 stm.executeQuery();
                 
-                while(res.next()){
+                //res.beforeFirst();
+                
+                while(res.next())
+                {
                     Producto product= new Producto();
                     product.setNombre(res.getString("nombre"));
                     product.setDescripcion(res.getString("paterno"));
@@ -105,8 +108,9 @@ public class ManejadorUsuariosBD {
                 }
              }
              finally{
-             if (res != null) try { res.close(); } catch (SQLException ignore) {}
-             if (stm != null) try { stm.close(); } catch (SQLException ignore) {}
+             if (productos.equals(null)){}    
+             if (res != null) try { res.close(); } catch (SQLException sql) {sql.getMessage().toString();}
+             if (stm != null) try { stm.close(); } catch (SQLException sql) {sql.getMessage().toString();}
           
              }
              return productos;

@@ -2,8 +2,14 @@
     background-color: #f8f8f8;
     border-radius: 8px;
     padding: 20px 10px;
+    margin-bottom: 25px;
 }
 
 .lateral{
     height: 720px;
+}
+
+.opciones{
+    margin-left: 30%;
+    
 }

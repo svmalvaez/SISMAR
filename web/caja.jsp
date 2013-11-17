@@ -21,6 +21,7 @@
   </head>
   <body>
        <div class="container">
+           <div class="row">   
       <!-- ================== Barra Navegadora ============================ -->
       <nav class="navbar navbar-default" role="navigation">
           <div class="navbar-header">  
@@ -39,9 +40,9 @@
           </form>
           </div>
       </nav>
-      
+           </div>
      
-         <div class="row">
+      <div class="row">
       <!-- ============================== Barra Leteral ===================================-->
       <div class="col-lg-3 lateral">
             <div class="list-group">
@@ -64,43 +65,61 @@
             </div>
          </div>
       
-      <!-- =========================== COntenido ====================================-->
-      <div class="col-lg-9">
-          <form name="pago" id="pago">  
-          <select class="form-control" name="mesa" id="mesa">
-            <option>Mesa 1</option>
-            <option>Mesa 2</option>
-            <option>Mesa 3</option>
-            <option>Mesa 4</option>
-            <option>Mesa 5</option>
-          </select>
-          <table class="table table-striped">
-              <tr>
-                  <th>#</th><th>Producto</th><th>SubTotal</th>
-              </tr>
-              <tr>
-                  <td>4</td><td>Lasagna</td><td>120</td>
-              </tr>
-              <tr>
-                  <td>4</td><td>Lasagna</td><td>120</td>
-              </tr>
-              <tr>
-                  <td>4</td><td>Lasagna</td><td>120</td>
-              </tr>
-              <tr>
-                  <td colspan="2">Total</td>
-                  <td>1200</td>
-              </tr>
-          </table>
-          <h4>Comentarios:</h4>
-          <textarea class="form-control" rows="3"></textarea>
+      <!-- =========================== Contenido ====================================-->
+        <div class="col-lg-9">
+            <div class="row">
+                <div class="col-lg-12">
+                    <form name="pago" id="pago">  
+                <select class="form-control" name="mesa" id="mesa">
+                  <option>Mesa 1</option>
+                  <option>Mesa 2</option>
+                  <option>Mesa 3</option>
+                  <option>Mesa 4</option>
+                  <option>Mesa 5</option>
+                </select>
+                </div>
+            </div>
+            <div class="panel panel-default">
+             <div class="panel-heading">
+                 <h3 class="panel-title">Cuenta por pagar</h3>
+             </div>
+                    <table class="table table-striped">
+                        <tr>
+                            <th>#</th><th>Producto</th><th>SubTotal</th>
+                        </tr>
+                        <tr>
+                            <td>4</td><td>Lasagna</td><td>120</td>
+                        </tr>
+                        <tr>
+                            <td>4</td><td>Lasagna</td><td>120</td>
+                        </tr>
+                        <tr>
+                            <td>4</td><td>Lasagna</td><td>120</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">Total</td>
+                            <td>1200</td>
+                        </tr>
+                    </table>
+                </div>
+              <div class="row">
+              <div class="col-lg-12">    
+                    <h4>Comentarios:</h4>
+                    <textarea class="form-control" rows="3"></textarea>
+                </div>
+          </div>
+           
+        
           <hr class="featurette-divider">
+          <div class="row">
           <div class="col-lg-offset-6 pago">
+              <div class="row">
+                  <div class="col-lg-12">
                   <h4>Total: </h4><div class="input-group"><span class="input-group-addon">$</span><input type="text" class="form-control"><span class="input-group-addon">.00</span></div>
                   <h4>Pago: </h4><div class="input-group"><span class="input-group-addon">$</span><input type="text" class="form-control"><span class="input-group-addon">.00</span></div>
                   <br>
                   <div class="row">
-                        <div class="col-lg-8">
+                        <div class="col-lg-12 opciones">
                         <div class="btn-group">
                             <button class="btn btn-success" type="submit"><span class="glyphicon glyphicon-ok"></span></button>
                             <button type="button" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></button>
@@ -109,20 +128,19 @@
                         </div>
                   </div>
                   <hr class="featurette-divider">
-                  <h4>Cambio: </h4><div class="input-group"><span class="input-group-addon">$</span><input type="text" class="form-control"><span class="input-group-addon">.00</span></div>
-             
-              
-      </div>
-          </form>
+                  <h4>Cambio: </h4><div class="input-group"><span class="input-group-addon">$</span><input type="text" class="form-control"><span class="input-group-addon">.00</span></div>      
+                  </div>
+              </div>
       </div>
      </div>
-       <hr class="featurette-divider">
-       <footer>
+      </div>
+    </div>
+      <hr class="featurette-divider">  
+       <footer>    
         <p class="pull-right"><a href="#">Back to top</a></p>
         <p>&copy; 2013 Company, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
-      </footer>
+      </footer>         
   </div>
-     
   </body>
 </html>
 

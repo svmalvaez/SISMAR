@@ -69,7 +69,8 @@
     </div>
             <!-- ==================== Registro ====================== -->
             <br><br>
-            <div class="alert alert-danger" id="error" style="display:none">
+            <div class="alert alert-danger fade in" id="error" hidden="">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
                 <h2>Datos incorrectos!.</h2>
                 <p>Porfavor, Verifica los campos incorrectos para continuar.</p>
             </div>
