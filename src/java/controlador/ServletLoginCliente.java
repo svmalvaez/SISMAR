@@ -15,13 +15,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import modelo.ManejadorUsuariosBD;
+import POJOs.*;
 
 /**
  *
  * @author Sergio
  */
-@WebServlet(name = "ServletLoginUser", urlPatterns = {"/ServletLoginUser"})
-public class ServletLoginUser extends HttpServlet {
+@WebServlet(name = "ServletLoginCliente", urlPatterns = {"/ServletLoginCliente"})
+public class ServletLoginCliente extends HttpServlet {
 
     private ManejadorUsuariosBD manejador;
 
@@ -30,16 +31,15 @@ public class ServletLoginUser extends HttpServlet {
     {
     	try 
     	{
-    		if(this.getServletContext().getAttribute("manejadorUsuarios") == null) // Si aún no se ha creado el manejador en el contexto
+    		if(this.getServletContext().getAttribute("manejadorUsuariosBD") == null) // Si aún no se ha creado el manejador en el contexto
     		{
-    			this.getServletContext().setAttribute("manejadorUsuarios",new ManejadorUsuariosBD("root","root","sismar")); // entonces se crea
-    			System.out.println("Se ha creado un manejador de usuarios para la BD.");
+    			this.getServletContext().setAttribute("manejadorUsuariosBD",new ManejadorUsuariosBD("root","pass","sismar")); // entonces se crea
+    			System.out.println("Se ha creado un manejador de usuarios para la BD desde el servlet ServletLoginCliente.");
     		}
     		
-    		this.manejador = (ManejadorUsuariosBD)this.getServletContext().getAttribute("manejadorUsuarios");
+    		this.manejador = (ManejadorUsuariosBD)this.getServletContext().getAttribute("manejadorUsuariosBD");
 	} 
     	catch (Exception e) {e.printStackTrace();}
-		
     }
     
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -49,13 +49,14 @@ public class ServletLoginUser extends HttpServlet {
         request.getSession().setAttribute("usuario",usr);
         request.getSession().setAttribute("password",password);
         //request.getSession().setAttribute("resultado",this.manejador.validarUsuario(usr, password));
-        if(this.manejador.validarUsuario(usr, password))
+        
+        if(this.manejador.validarUsuarioCliente(usr, password))
         {
         response.sendRedirect("indexUser.jsp");
         }
         else
         {
-        request.getSession().setAttribute("usuario",null);
+        request.getSession().setAttribute("cliente",null);
         request.getSession().setAttribute("password",null);
         response.sendRedirect("index.jsp");
         }

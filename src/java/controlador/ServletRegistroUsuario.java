@@ -14,6 +14,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import modelo.ManejadorUsuariosBD;
+import POJOs.*;
+import java.util.Date;
+import modelo.Auxiliares;
 
 /**
  *
@@ -26,17 +29,18 @@ public class ServletRegistroUsuario extends HttpServlet {
 
    
     @Override
-     public void init()
+    public void init()
     {
     	try 
     	{
-    		if(this.getServletContext().getAttribute("manejadorUsuarios") == null) // Si aún no se ha creado el manejador en el contexto
+            
+    		if(this.getServletContext().getAttribute("manejadorUsuariosBD") == null) // Si aún no se ha creado el manejador en el contexto
     		{
-    			this.getServletContext().setAttribute("manejadorUsuarios",new ManejadorUsuariosBD("root","root","sismar")); // entonces se crea
-    			System.out.println("Se ha creado un manejador de usuarios para la BD.");
+    			this.getServletContext().setAttribute("manejadorUsuariosBD",new ManejadorUsuariosBD("root","pass","sismar")); // entonces se crea
+    			System.out.println("Se ha creado un manejador de usuarios para la BD desde el servlet ServletRegistroUsuario.");
     		}
     		
-    		this.manejador = (ManejadorUsuariosBD)this.getServletContext().getAttribute("manejadorUsuarios");
+    		this.manejador = (ManejadorUsuariosBD)this.getServletContext().getAttribute("manejadorUsuariosBD");
 	} 
     	catch (Exception e) {e.printStackTrace();}
 		
@@ -44,10 +48,11 @@ public class ServletRegistroUsuario extends HttpServlet {
     
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       String numero = request.getParameter("numero");
+       String numero = this.manejador.generarNuevoNumero("cliente");
        String nombre = request.getParameter("nombre");
        String paterno = request.getParameter("paterno");
        String materno = request.getParameter("materno");
+       String fechaRegistro = Auxiliares.fechaActual();
        String password = request.getParameter("password");
        String correo = request.getParameter("correo");
        String direccion = request.getParameter("direccion");
@@ -55,10 +60,14 @@ public class ServletRegistroUsuario extends HttpServlet {
        String numTarjeta = request.getParameter("numTarjeta");
        String codSegTarjeta = request.getParameter("codSeguridad");
        String tipoTarjeta = request.getParameter("tipoTarjeta");
-  
-       request.getSession().setAttribute("registro", numero + nombre + paterno + materno + correo + tipoTarjeta);
-       request.getSession().setAttribute("bd",this.manejador.insertar(numero, nombre, paterno, materno, password, correo, direccion, telefono, numTarjeta, codSegTarjeta, tipoTarjeta));
-       response.sendRedirect("index.jsp");
+       
+      Cliente nuevo = new Cliente(numero,nombre,paterno,materno,Auxiliares.formatearFecha(fechaRegistro),correo,direccion,telefono,numTarjeta,codSegTarjeta,tipoTarjeta,password);
+      if(this.manejador.agregarUsuarioCliente(nuevo))
+         System.out.println("Usuario "+nuevo.getNombre()+": "+nuevo.getNumero()+" ha sido agregado satisfactoriamente."); 
+      else
+         System.out.println("ERROR: fallo al intentar agregar usuario "+nuevo.getNombre()+": "+nuevo.getNumero()+"."); 
+      
+      response.sendRedirect("index.jsp");
        
     }
     /**

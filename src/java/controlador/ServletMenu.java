@@ -25,8 +25,8 @@ import modelo.ManejadorUsuariosBD;
 public class ServletMenu extends HttpServlet {
 private ManejadorUsuariosBD manejador;
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException 
+    {
   /*try {
         List<Producto> productos = manejador.menu();
         request.setAttribute("productos", productos); //  ${productos} en JSP

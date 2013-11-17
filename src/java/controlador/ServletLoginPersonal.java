@@ -18,7 +18,7 @@ import modelo.ManejadorUsuariosBD;
  * @author Luis
  */
 
-@WebServlet(name = "ServletLoginAdmin", urlPatterns = {"/ServletLoginAdmin"})
+@WebServlet(name = "ServletLoginPersonal", urlPatterns = {"/ServletLoginPersonal"})
 
 public class ServletLoginPersonal extends HttpServlet {
 private ManejadorUsuariosBD manejador;
@@ -65,7 +65,7 @@ private ManejadorUsuariosBD manejador;
     	{
     		if(this.getServletContext().getAttribute("manejadorUsuariosBD") == null) // Si aún no se ha creado el manejador en el contexto
     		{
-    			this.getServletContext().setAttribute("manejadorUsuariosBD",new ManejadorUsuariosBD("root","joshimar","sismar")); // entonces se crea
+    			this.getServletContext().setAttribute("manejadorUsuariosBD",new ManejadorUsuariosBD("root","pass","sismar")); // entonces se crea
     			System.out.println("Se ha creado un manejador de usuarios para la BD desde el servlet ServletLoginPersonal.");
     		}
     		
@@ -75,15 +75,13 @@ private ManejadorUsuariosBD manejador;
 		
     }
     
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        String usr = request.getParameter("usuarioAdmin");
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
+    {
+        String usr = request.getParameter("usuarioPersonal");
         String pwd = request.getParameter("password");
      
-        request.getSession().setAttribute("usuarioAdmin",usr);
+        request.getSession().setAttribute("usuarioPersonal",usr);
         request.getSession().setAttribute("password",pwd);
-
-       
     }
 
 }
