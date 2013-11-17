@@ -1,0 +1,1 @@
+Amigo, acuérdate de cargar el nuevo script de la base de datos y agregar el fichero JSTL porfa :)
