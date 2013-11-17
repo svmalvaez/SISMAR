@@ -29,8 +29,8 @@
           </div>
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Link</a></li>
-            <li><a href="#">Link</a></li>
+            <li class="active"><a href="#">Link1</a></li>
+            <li><a href="#">Link2</a></li>
             </ul>          
               <form class="navbar-form navbar-right" name="buscar" id="buscar" role="search">
                 <div class="form-group">
