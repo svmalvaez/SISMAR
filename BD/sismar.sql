@@ -124,14 +124,16 @@ CREATE TABLE `cuenta` (
   `fecha` date NOT NULL,
   `comentarios` varchar(200) DEFAULT NULL,
   `total` decimal(10,0) DEFAULT NULL,
-  `formaPago` varchar(45) NOT NULL,
+  `formaPago` varchar(45) NOT NULL DEFAULT 'efectivo',
   `cliente_numero` varchar(8) DEFAULT NULL,
   `mesa_id` int(11) NOT NULL,
+  `hora` time DEFAULT NULL,
+  `estado` varchar(50) DEFAULT 'creada',
   PRIMARY KEY (`id`),
   KEY `fk_cuenta_cliente1_idx` (`cliente_numero`),
   KEY `fk_cuenta_mesa1_idx` (`mesa_id`),
-  CONSTRAINT `cuenta_ibfk_2` FOREIGN KEY (`mesa_id`) REFERENCES `mesa` (`id`),
-  CONSTRAINT `cuenta_ibfk_1` FOREIGN KEY (`cliente_numero`) REFERENCES `cliente` (`numero`)
+  CONSTRAINT `cuenta_ibfk_1` FOREIGN KEY (`cliente_numero`) REFERENCES `cliente` (`numero`),
+  CONSTRAINT `cuenta_ibfk_2` FOREIGN KEY (`mesa_id`) REFERENCES `mesa` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -236,7 +238,8 @@ DROP TABLE IF EXISTS `mesa`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `mesa` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `descripcion` varchar(50) NOT NULL,
+  `nombre` varchar(45) NOT NULL,
+  `descripcion` varchar(50) DEFAULT NULL,
   `personal_numero` varchar(8) DEFAULT NULL,
   `estado` varchar(45) DEFAULT 'disponible',
   `personas` int(11) DEFAULT '0',
@@ -416,7 +419,7 @@ CREATE TABLE `tipoitem` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `tipo` varchar(45) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -425,6 +428,7 @@ CREATE TABLE `tipoitem` (
 
 LOCK TABLES `tipoitem` WRITE;
 /*!40000 ALTER TABLE `tipoitem` DISABLE KEYS */;
+INSERT INTO `tipoitem` VALUES (1,'bebida'),(2,'postre');
 /*!40000 ALTER TABLE `tipoitem` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -440,7 +444,7 @@ CREATE TABLE `tipopersonal` (
   `tipo` varchar(20) NOT NULL,
   `funciones` text,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -449,7 +453,7 @@ CREATE TABLE `tipopersonal` (
 
 LOCK TABLES `tipopersonal` WRITE;
 /*!40000 ALTER TABLE `tipopersonal` DISABLE KEYS */;
-INSERT INTO `tipopersonal` VALUES (1,'mesero','debe atender las ordenes de los comenzales');
+INSERT INTO `tipopersonal` VALUES (1,'mesero','debe atender las ordenes de los comenzales'),(2,'hostess','manejar las mesas para asignar a los comenzales la mas adecuada.'),(3,'recursos humanos','manejar el personal de la empresa.'),(4,'operaciones','mantener el orden en la operacione del lugar, revisar que hace falta, agregar notas de pendientes para el negocio.');
 /*!40000 ALTER TABLE `tipopersonal` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -462,4 +466,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-11-11 12:55:40
+-- Dump completed on 2013-11-15 13:16:46
