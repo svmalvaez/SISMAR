@@ -1,0 +1,37 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 16-nov-2013, 19:16:52
+    Author     : Sergio
+*/
+
+.mesas{
+    margin-bottom: 10px;
+    background-color: #f8f8f8;
+    border-radius: 10px;
+    padding: 10px;
+    
+}
+.nav-pills{
+    alignment-baseline: middle;
+}
+.nav-pills > li > a:hover{
+    color: #fff;
+    background-color: #006699;  
+}
+
+.buscar_menu{
+    display: block;
+}
+
+.input-group{
+    width: 100%;
+}
+
+.menu{
+    height: 400px;
+    overflow-y: scroll;
+}
