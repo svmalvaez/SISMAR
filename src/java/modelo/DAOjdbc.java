@@ -17,7 +17,6 @@ public class DAOjdbc {
 	
     private Connection conexion;
     private Statement sentenciaSQL;
-    
 
         public DAOjdbc()throws ClassNotFoundException, SQLException, InstantiationException, IllegalAccessException
         {		
@@ -183,5 +182,23 @@ public class DAOjdbc {
 				System.out.println("No se pudo renovar el objeto Statement");
 				e.printStackTrace();
 			}
+        }
+        
+        public int cuantosRegistros(ResultSet c)
+        {
+            int i=0;
+            ResultSet cdr=c;
+        try 
+        {
+            cdr.beforeFirst();
+            
+            while(cdr.next())
+                i++;
+        } 
+        catch (SQLException ex) 
+        {
+            Logger.getLogger(DAOjdbc.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            return i;
         }
 }
