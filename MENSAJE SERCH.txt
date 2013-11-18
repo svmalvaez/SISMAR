@@ -1,1 +1,2 @@
-Amigo, acuérdate de cargar el nuevo script de la base de datos y agregar el fichero JSTL porfa :)
+Amigo, acuérdate de cargar el nuevo script de la base de datos y agregar el fichero JSTL porfa.
+Amigo, otra cosa, la carpeta WEB-INF no está sincronizada ¿La tienes? ... ¿Porqué no se sincroniza?
