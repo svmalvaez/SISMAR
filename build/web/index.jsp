@@ -1,13 +1,8 @@
-<%@page import="java.util.List"%>
-<%@page import="modelo.Producto"%>
-<%@page import="java.util.ArrayList"%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <% 
-    if (request.getSession().getAttribute("usuario")!=null){
-        response.sendRedirect("indexUser.jsp");
-    }
+    Object u=request.getSession().getAttribute("usuarioCliente");
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -37,12 +32,15 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">SISMAR</a>
+            <a class="navbar-brand" data-toogle="tooltip" data-placement="bottom" title data-original-title="Perfil" href="#">
+              <% if (u==null){ %>
+              SISMAR<% } else { out.println("<span class=\"glyphicon glyphicon-user\"> "+u.toString()+"</span>");}%>
+          </a>
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
               <li class="active"><a href="#"><span class="glyphicon glyphicon-home"></span></a></li>
-            <li><a href="#about">Quienes Somos</a></li>
+            <li><a href="#"><%if (u==null){ %>Quienes Somos<%}else{ %>Perfil<%}%></a></li>
             <li><a data-toggle="modal" id="menu" href="#ModalMenu">Menú <span class="glyphicon glyphicon-cutlery"></span></a></li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Sucursales <b class="caret"></b></a>
@@ -57,16 +55,21 @@
                 <li><a href="#">Polanco</a></li>
               </ul>
             </li>
-          </ul>
-          <form class="navbar-form navbar-right" method="post" action="ServletLoginUser">
+          <% if(u!=null){ %> 
+          <li><a href="ServletCerrar" id="CerrarSesion">Cerrar Sesión</a></li>
+            <% } else{ %>
+          </ul> 
+          <form class="navbar-form navbar-right" method="post" action="ServletLoginCliente">
             <div class="form-group">
-                <input type="text" placeholder="Número de Usuario" class="form-control" name="usuario">
+                <input type="text" placeholder="Número de Usuario" class="form-control" name="usuarioCliente">
             </div>
             <div class="form-group">
                 <input type="password" placeholder="Contraseña" class="form-control" name="password">
             </div>
-            <button type="submit" class="btn btn-warning">Entrar</button>
+            <button type="submit" class="btn btn-success">Entrar</button>
           </form>
+             <% } %>
+              
         </div><!--/.navbar-collapse -->
       </div>
     </div>
@@ -170,6 +173,7 @@
     <script src="dist/js/bootstrap.min.js"></script>
     <script src="assets/js/holder.js"></script>
     <script>
+       
         $(function(){
             $('#menu').on('click',function(e){
                 e.preventDefault();

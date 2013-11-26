@@ -1,6 +1,4 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<c:forEach items="${productos}" var="productos">
+
 <!-- Modal Menu-->
     <div class="modal-dialog">
          <div id="menuCarousel" class="carousel1 slide"> 
@@ -17,17 +15,17 @@
                               <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                               <h2 class="modal-title title">Alimentos</h2>
                             </div>
-                            <div class="modal-body"> 
+                            <div class="modal-body">
                               <div class="row">
                                   <div class="col-lg-10 producto">
-                                      <h5>${productos.nombre}</h5>
-                                      <p class="descripcion">${productos.paterno}</p>
+                                      <h5>LASAGNA</h5>
+                                      <p class="descripcion">Nuestra tradicional lasagna servida al estilo italiano.</p>
                                   </div>
                                   <div class="col-lg-2 precio">
-                                      <p>$ ${productos.precio}</p>
+                                      <p>$ 135</p>
                                   </div>   
-                              </div>  
-
+                              </div>
+                              </c:if>
                               <div class="row">
                                   <div class="col-lg-10 producto">
                                       <h5>LASAGNA</h5>

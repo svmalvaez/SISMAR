@@ -8,6 +8,7 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <% Object u= request.getSession().getAttribute("usuarioCliente");%>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="">
@@ -54,7 +55,7 @@
                 <li><a href="#">Polanco</a></li>
               </ul>
             </li>
-          </ul>
+          </ul> 
           <form class="navbar-form navbar-right" method="post" action="ServletLoginUser">
             <div class="form-group">
                 <input type="text" placeholder="Número de Usuario" class="form-control" name="usuario">
@@ -77,12 +78,28 @@
             <div class="container">
             <h1>Registro</h1>
             <form role="form" action="ServletRegistroUsuario" method="post" id="idform">
-            <div class="row"> 
+                   <div class="row">
                 <div class="col-lg-6">
                         <div class="form-group" >
-                            <label for="nombre">Numero de Usuario <span class="glaphycon glyphicon-asterisk"></span></label>
-                              <input type="text" class="form-control" id= "numero" name="numero" placeholder="Introduzca su nombre">
+                            <label for="nombre">Nombre <span class="glaphycon glyphicon-asterisk"></span></label>
+                              <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Introduzca su nombre">
                         </div>
+                        <div class="form-group">
+                              <label for="nombre">Apellido Paterno <span class="glaphycon glyphicon-asterisk"></span></label>
+                              <input type="text" class="form-control" id="paterno" name="paterno" placeholder="Introduzca su apellido paterno">
+                        </div>
+                        <div class="form-group">
+                              <label for="nombre">Apellido Materno <span class="glaphycon glyphicon-asterisk"></span></label>
+                              <input type="text"  class="form-control" id="materno" name="materno" placeholder="Introduzca su apellido materno">
+                        </div>
+                       <div class="form-group">
+                              <label for="nombre">Correo <span class="glaphycon glyphicon-asterisk"></span></label>
+                              <input type="email" class="form-control" id="correo" name="correo" placeholder="Introduzca su correo electrónico">
+                        </div>
+                </div>
+            </div>
+                <div class="row"> 
+                <div class="col-lg-6">
                     
                             <div class="row">
                                 <div class="col-lg-6">
@@ -98,30 +115,8 @@
                                 </div>
                                 </div>
                             </div>
-                        <div class="form-group">
-                              <label for="nombre">Correo <span class="glaphycon glyphicon-asterisk"></span></label>
-                              <input type="email" class="form-control" id="correo" name="correo" placeholder="Introduzca su correo electrónico">
-                        </div>
-                   
                 </div>
                </div>
-           
-            <div class="row">
-                <div class="col-lg-6">
-                        <div class="form-group" >
-                            <label for="nombre">Nombre <span class="glaphycon glyphicon-asterisk"></span></label>
-                              <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Introduzca su nombre">
-                        </div>
-                        <div class="form-group">
-                              <label for="nombre">Apellido Paterno <span class="glaphycon glyphicon-asterisk"></span></label>
-                              <input type="text" class="form-control" id="paterno" name="paterno" placeholder="Introduzca su apellido paterno">
-                        </div>
-                        <div class="form-group">
-                              <label for="nombre">Apellido Materno <span class="glaphycon glyphicon-asterisk"></span></label>
-                              <input type="text"  class="form-control" id="materno" name="materno" placeholder="Introduzca su apellido materno">
-                        </div>
-                </div>
-            </div>
             <div class="row">
                 <div class="col-lg-6">
                      <div class="form-group">

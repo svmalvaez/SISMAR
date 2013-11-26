@@ -44,21 +44,17 @@ public class ServletLoginCliente extends HttpServlet {
     
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String usr = request.getParameter("usuario");
+        String usr = request.getParameter("usuarioCliente");
         String password = request.getParameter("password");
-        request.getSession().setAttribute("usuario",usr);
-        request.getSession().setAttribute("password",password);
-        //request.getSession().setAttribute("resultado",this.manejador.validarUsuario(usr, password));
-        
+
         if(this.manejador.validarUsuarioCliente(usr, password))
-        {
-        response.sendRedirect("indexUser.jsp");
+        {   
+            request.getSession().setAttribute("usuarioCliente",usr);
+            response.sendRedirect("index.jsp");
         }
         else
         {
-        request.getSession().setAttribute("cliente",null);
-        request.getSession().setAttribute("password",null);
-        response.sendRedirect("index.jsp");
+            response.sendRedirect("index.jsp");
         }
        
     }

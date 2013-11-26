@@ -32,10 +32,9 @@ public class ServletCerrar extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException 
     {
-        String usuario=request.getSession().getAttribute("usuario").toString();
-        String password= request.getSession().getAttribute("password").toString();
+        String usuario=request.getSession().getAttribute("usuarioCliente").toString();
         if(usuario!=null) 
-          request.getSession().invalidate();
+         request.getSession().invalidate();
    
 	response.sendRedirect("index.jsp");
     }

@@ -4,6 +4,7 @@
  */
 package controlador;
 
+import POJOs.*;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -77,11 +78,55 @@ private ManejadorUsuariosBD manejador;
     
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
     {
-        String usr = request.getParameter("usuarioPersonal");
+        String numero = request.getParameter("numeroPersonal");
         String pwd = request.getParameter("password");
-     
-        request.getSession().setAttribute("usuarioPersonal",usr);
-        request.getSession().setAttribute("password",pwd);
+        Personal usuario =null;
+        
+        if(numero==null || pwd ==null)
+        {
+            System.out.println("ServletLoginPersonal: Los parámetros numeroPersonal y password son necesarios para iniciar sesión.");
+            response.sendRedirect("Redireccionar nuevamente al login de personal");
+        }
+        
+        usuario = this.manejador.obtenerElementoPersonal(numero);
+        if(usuario==null)
+        {
+            System.out.println("ServletLoginPersonal: No existe el número de personal "+numero);
+            response.sendRedirect("Redireccionar nuevamente al login de personal");
+        }
+        else
+        {
+            System.out.println("ServletLoginPersonal: Se hizo un request con parámetros numeroPersonal="+numero+" y password="+pwd);
+            String tipo = this.manejador.obtenerTipoPersonal(usuario);
+            request.getSession().setAttribute("usuarioPersonal",numero);
+           
+            
+            if(tipo.toLowerCase().equals("recursos humanos"))
+            {
+                response.sendRedirect("redireccionar a la iterfaz de RH");
+            }
+            else if(tipo.toLowerCase().equals("operaciones"))
+            {
+                response.sendRedirect("redireccionar a la iterfaz de Operaciones");
+            }
+            else if(tipo.toLowerCase().equals("cajero"))
+            {
+                response.sendRedirect("redireccionar a la iterfaz de Cajero");
+            }
+            else if(tipo.toLowerCase().equals("hostess"))
+            {
+                response.sendRedirect("redireccionar a la iterfaz de Hostess");
+            }
+            else if(tipo.toLowerCase().equals("mesero"))
+            {
+                response.sendRedirect("redireccionar a la iterfaz de Mesero");
+            }
+            else if(tipo.toLowerCase().equals("cocina"))
+            {
+                response.sendRedirect("redireccionar a la iterfaz de Cocina");
+            }
+        }
+
     }
 
 }

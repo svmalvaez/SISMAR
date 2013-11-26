@@ -7,6 +7,8 @@ package modelo;
 import POJOs.*;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -31,7 +33,7 @@ public class ManejadorUsuariosBD {
             try 
             {
                 this.bd=new DAOjdbc();
-                this.bd.conectar("root","joshimar","sismar");
+                this.bd.conectar("root","pass","sismar");
                 System.out.println("Conexión realizada con éxito con usuario root y base de datos accedida sismar"); 
             } 
             catch (SQLException ex) {
@@ -46,21 +48,45 @@ public class ManejadorUsuariosBD {
             
         }
         
+        
+        private void agregarBitacoraPersonal(String numero, String entrada)
+        {
+            try 
+            {
+                String query="insert into bitacora (entrada,fecha,hora,personal_numero) values('"+entrada+"','"+Auxiliares.fechaActual()+"','"+Auxiliares.horaActual()+"','"+numero+"')";
+                this.bd.ejecutarUpdate(query);
+            } 
+            catch (SQLException ex) 
+            {
+                //Logger.getLogger(ManejadorUsuariosBD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        private void agregarBitacoraCliente(String numero, String entrada)
+        {
+            try 
+            {
+                String query="insert into bitacora (entrada,fecha,hora,cliente_numero) values('"+entrada+"','"+Auxiliares.fechaActual()+"','"+Auxiliares.horaActual()+"','"+numero+"')";
+                this.bd.ejecutarUpdate(query);
+            } 
+            catch (SQLException ex) 
+            {
+                //Logger.getLogger(ManejadorUsuariosBD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        
+        
         public boolean validarUsuarioCliente(String numero, String pwd)
         {
-            String query = "select password from cliente where numero='"+numero+"'";
+             String query = "SELECT * FROM cliente WHERE numero='"+numero+"' AND password='"+pwd+"'";
             try 
             {
                 ResultSet cdr = this.bd.obtenerSelect(query);
-                if(cdr==null)
-                    return false;
+                if(cdr.next())
+                    return true;
                 
                 else
                 {
-                    if(cdr.first() && cdr.getString("password").equals(pwd))
-                        return true;
-                    else
-                        return false;
+                     return false;
                 }
             } 
             catch (SQLException ex) 
@@ -551,6 +577,18 @@ public class ManejadorUsuariosBD {
 
     }
     
-    
-}
+        
+
+   /* public List<Producto> menu () throws SQLException{
+        List<Producto> productos = new ArrayList<Producto>();
+        ResultSet cdr =null;
+        try{
+            cdr=bd.conexion().prepareStatement("")
+        }
+        
+    }*/
+
+  
+}   
+
 
